@@ -887,9 +887,14 @@ export default function HomePage() {
 
         switch (view.name) {
             case 'book':
-                return currentMovie ? <BookingPage movie={currentMovie} onBack={handleBack} /> : 
-                    <div className="p-10 text-center">Movie data not available for booking.</div>;
-            case 'detail':
+            // 🚨 CHANGE THIS LINE: Replace MockBookingPage with the imported BookingPage
+            return currentMovie ? (
+                <BookingPage movie={currentMovie} onBack={handleBack} />
+            ) : (
+                <div className="p-10 text-center">Movie data not available for booking.</div>
+            );
+            
+        case 'detail':
                 return currentMovie ? <MovieDetailView movie={currentMovie} onBack={handleBack} onBook={handleBookClick} onTrailerView={handleTrailerView} /> : 
                     <div className="p-10 text-center">Movie data not available for details.</div>;
             case 'list':
