@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1200" viewBox="0 0 1200 1200" version="1.1">
+  <!-- Transparent background so the logo can be placed on any surface -->
+  <defs>
+    <!-- Neon glow filter -->
+    <filter id="neon-glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Stronger outer glow for icon -->
+    <filter id="outer-glow" x="-80%" y="-80%" width="260%" height="260%">
+      <feGaussianBlur stdDeviation="18" result="blur"/>
+      <feColorMatrix type="matrix" values="0 0 0 0 0.0  0 0 0 0 0.65  0 0 0 0 0.9  0 0 0 1 0" result="colorized"/>
+      <feMerge>
+        <feMergeNode in="colorized"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Subtle inner shadow for depth -->
+    <filter id="inner-shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feOffset dx="0" dy="4" result="off"/>
+      <feGaussianBlur stdDeviation="6" in="off" result="blur2"/>
+      <feComposite in="blur2" in2="SourceAlpha" operator="arithmetic" k2="-1" k3="1" result="inner"/>
+      <feMerge>
+        <feMergeNode in="inner"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Filmstrip hole symbol as path to reuse -->
+    <symbol id="hole" viewBox="0 0 100 100">
+      <rect x="12" y="12" width="76" height="76" rx="14" ry="14" />
+    </symbol>
+
+    <!-- Color variable -->
+    <linearGradient id="bgGrad" x1="0" x2="1">
+      <stop offset="0%" stop-color="#021027"/>
+      <stop offset="100%" stop-color="#001428"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Optional dark rounded square background for previews (comment out if not needed) -->
+  <!--
+  <rect x="0" y="0" width="1200" height="1200" rx="0" fill="url(#bgGrad)"/>
+  -->
+
+  <!-- Center group -->
+  <g transform="translate(200,140)">
+    <!-- Filmstrip base -->
+    <rect x="40" y="40" width="720" height="560" rx="48" ry="48" fill="none" stroke="#00E6FF" stroke-width="20" filter="url(#neon-glow)"/>
+    <!-- inner film area - slight darker center for contrast -->
+    <rect x="80" y="90" width="640" height="480" rx="24" ry="24" fill="rgba(0,0,0,0.02)"/>
+
+    <!-- Left holes -->
+    <g fill="#00E6FF" opacity="1" filter="url(#neon-glow)">
+      <rect x="10" y="110" width="60" height="60" rx="12" ry="12"/>
+      <rect x="10" y="200" width="60" height="60" rx="12" ry="12"/>
+      <rect x="10" y="290" width="60" height="60" rx="12" ry="12"/>
+      <rect x="10" y="380" width="60" height="60" rx="12" ry="12"/>
+    </g>
+
+    <!-- Right holes -->
+    <g fill="#00E6FF" opacity="1" filter="url(#neon-glow)">
+      <rect x="800" y="110" width="60" height="60" rx="12" ry="12"/>
+      <rect x="800" y="200" width="60" height="60" rx="12" ry="12"/>
+      <rect x="800" y="290" width="60" height="60" rx="12" ry="12"/>
+      <rect x="800" y="380" width="60" height="60" rx="12" ry="12"/>
+    </g>
+
+    <!-- Play button (triangle) centered inside filmstrip -->
+    <g transform="translate(400,320)" filter="url(#outer-glow)">
+      <!-- soft filled triangle glow -->
+      <path d="M -90 -110 L 110 0 L -90 110 Z" fill="#00BFFF" opacity="0.18"/>
+      <!-- main triangle -->
+      <path d="M -72 -88 L 88 0 L -72 88 Z" fill="#00E6FF" stroke="#98F6FF" stroke-width="6"/>
+    </g>
+  </g>
+
+  <!-- Text: VIBE 4 U -->
+  <g transform="translate(0,840)" font-family="Montserrat, Arial, Helvetica, sans-serif" text-anchor="middle">
+    <defs>
+      <filter id="text-glow" x="-100%" y="-100%" width="300%" height="300%">
+        <feGaussianBlur stdDeviation="6" result="tblur"/>
+        <feMerge>
+          <feMergeNode in="tblur"/>
+          <feMergeNode in="tblur"/>
+          <feMergeNode in="SourceGraphic"/>
+        </feMerge>
+      </filter>
+    </defs>
+
+    <!-- soft halo -->
+    <text x="600" y="120" font-size="160" letter-spacing="6" fill="#00BFFF" font-weight="700" filter="url(#text-glow)" opacity="0.9">
+      VIBE 4 U
+    </text>
+    <!-- crisp main text -->
+    <text x="600" y="120" font-size="160" letter-spacing="6" fill="white" fill-opacity="0.98" font-weight="700" style="paint-order:stroke fill;" stroke="#00E6FF" stroke-width="3">
+      VIBE 4 U
+    </text>
+  </g>
+
+  <!-- Small accessibility-friendly description (not visible) -->
+  <title>VIBE 4 U - neon blue filmstrip logo with play icon</title>
+  <desc>Logo for a movie booking website: neon blue filmstrip icon with play button and the text "VIBE 4 U".</desc>
+</svg>
