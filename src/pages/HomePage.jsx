@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo } from 'react';
 import { Search, Star, ChevronLeft, User, Clock, Drama, Ticket, Film, Menu, X, Users, Calendar, LogOut, UserCircle, MessageSquare, Sun, Moon } from 'lucide-react';
-
+import
 // --- Configuration: TMDB API ---
 const API_KEY = 'd54630c008cb56d4edc29ec2c25f4e70';
 const BASE_URL = 'https://api.themoviedb.org/3';
