@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useAuth } from '../contexts/AuthContext';
+import { Link } from 'react-router-dom';
 import { 
   LogOut, 
   User, 
   Home, 
   Clock, 
-  Phone, 
-  MapPin // Imported MapPin icon for city
+  Phone,
 } from 'lucide-react';
 
 // Define the navigation links
@@ -19,52 +19,26 @@ const navItems = [
 const UserProfile = () => {
   const { currentUser, logout } = useAuth();
   
-  // State for Theme (Dark/Light Mode)
-  const [theme, setTheme] = useState('dark');
-  
-  // State for Current City
-  const [currentCity, setCurrentCity] = useState('New York');
-
   if (!currentUser) return null;
-
-  // --- Theme Toggle Logic ---
- 
-  
-  // --- City Change Logic ---
-  const handleChangeCity = () => {
-    // NOTE: In a real application, this would open a modal or navigate to a city selection page.
-    // For demonstration, we'll mock a simple toggle between two cities.
-    const newCity = currentCity === 'New York' ? 'Los Angeles' : 'New York';
-    setCurrentCity(newCity);
-    console.log(`City changed to: ${newCity}`);
-  };
 
 
   return (
     <div className="flex items-center space-x-4">
       
       {/* --- Navigation Buttons (Home, Showtimes, Contact) --- */}
-      {navItems.map((item) => (
-        <button
+      {navItems.slice(0, 1).map((item) => (
+        <Link
           key={item.name}
-          onClick={item.action}
+          to="/"
           className="flex items-center space-x-1 p-2 text-gray-300 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
           title={item.name}
         >
           <item.icon className="w-4 h-4" />
           <span className="font-medium hidden sm:inline">{item.name}</span>
-        </button>
+        </Link>
       ))}
-
-      {/* --- City Display/Change Button --- */}
-      <button
-        onClick={handleChangeCity}
-        className="flex items-center space-x-1 p-2 text-yellow-400 hover:text-white hover:bg-white/10 rounded-lg transition-colors"
-        title="Change City"
-      >
-        <MapPin className="w-4 h-4" />
-        <span className="font-medium">{currentCity}</span>
-      </button>
+      <Link to="/tickets" className="profile-link" title="Tickets"><TicketIcon /></Link>
+      {(currentUser.role === 'branch_admin' || currentUser.role === 'super_admin') && <Link to="/manage" className="profile-link" title="Staff dashboard"><BarChartIcon /></Link>}
 
       
 
@@ -96,3 +70,6 @@ const UserProfile = () => {
 };
 
 export default UserProfile;
+
+const TicketIcon = () => <span aria-hidden="true">▣</span>;
+const BarChartIcon = () => <span aria-hidden="true">⌁</span>;

@@ -1,23 +1,38 @@
 {
   "name": "vibe4u-backend",
+  "version": "1.0.0",
+  "description": "VIBE4U cinema booking API - auth, catalog, seat locking, coupons, Razorpay payments, admin and branch management",
+  "main": "server.js",
   "type": "commonjs",
-  "dependencies": {
-    "axios": "^1.13.1",
-    "bcryptjs": "^2.4.3",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "dotenv": "^16.6.1",
-    "express": "^4.21.2",
-    "jsonwebtoken": "^9.0.2"
-  },
   "scripts": {
     "start": "node server.js",
-    "dev": "node server.js"
+    "dev": "node --watch server.js",
+    "seed": "node scripts/seed.js",
+    "seed:reset": "node scripts/seed.js --reset"
   },
-  "version": "1.0.0",
-  "description": "",
-  "main": "server.js",
-  "keywords": [],
+  "dependencies": {
+    "axios": "1.13.1",
+    "bcryptjs": "2.4.3",
+    "cookie-parser": "1.4.7",
+    "cors": "2.8.5",
+    "dotenv": "16.6.1",
+    "express": "4.21.2",
+    "express-rate-limit": "7.5.0",
+    "jsonwebtoken": "9.0.2",
+    "mongoose": "8.9.5",
+    "qrcode": "1.5.4",
+    "razorpay": "2.9.6"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "keywords": [
+    "cinema",
+    "booking",
+    "razorpay",
+    "express",
+    "mongoose"
+  ],
   "author": "",
   "license": "ISC"
 }
